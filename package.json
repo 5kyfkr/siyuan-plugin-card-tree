@@ -1,0 +1,19 @@
+{
+  "name": "siyuan-plugin-card-tree",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "dev": "node scripts/dev.mjs",
+    "assets:prepare": "node scripts/prepare-assets.mjs",
+    "assets:check": "node scripts/check-assets.mjs",
+    "package": "node scripts/package.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "fflate": "^0.8.3",
+    "jsdom": "^29.1.1"
+  }
+}

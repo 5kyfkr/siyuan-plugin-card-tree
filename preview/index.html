@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>卡片文档树预览</title>
+    <link rel="stylesheet" href="/app.css">
+    <style>
+        html, body { margin: 0; height: 100%; }
+        #app { height: 100%; }
+        .b3-text-field, .b3-select { color: inherit; border: 0; border-radius: 6px; background: #eeede9; padding: 6px 8px; font-size: 12px; }
+    </style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+    <symbol id="iconFiles" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-13Zm2 2V18h12V8h-7l-2-2H6Z"/></symbol>
+    <symbol id="iconFilesRoot" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-13Z"/></symbol>
+    <symbol id="iconFile" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Zm2 2v14h8V8h-3V5H8Z"/></symbol>
+    <symbol id="iconFileText" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6V3Zm2 2v14h8V8h-3V5H8Zm1 7h6v1.5H9V12Zm0 3h6v1.5H9V15Z"/></symbol>
+    <symbol id="iconRight" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7-1.4-1.4 5.6-5.6-5.6-5.6L9 5Z"/></symbol>
+    <symbol id="iconLeft" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7 1.4-1.4-5.6-5.6 5.6-5.6L15 5Z"/></symbol>
+    <symbol id="iconContract" viewBox="0 0 24 24"><path d="M5 5h6v2H7v4H5V5Zm8 0h6v6h-2V7h-4V5ZM5 13h2v4h4v2H5v-6Zm12 0h2v6h-6v-2h4v-4Z"/></symbol>
+    <symbol id="iconRefresh" viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 1 7.2 4.5l-1.8.9A6 6 0 1 0 18 12h2a8 8 0 1 1-8-8Zm6 0h2v5h-5V7h3V4Z"/></symbol>
+    <symbol id="iconSearch" viewBox="0 0 24 24"><path d="m16.2 14.8 4 4-1.4 1.4-4-4A7 7 0 1 1 16.2 14.8ZM10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></symbol>
+    <symbol id="iconLayout" viewBox="0 0 24 24"><path d="M4 5h6v14H4V5Zm10 0h6v6h-6V5Zm0 8h6v6h-6v-6Z"/></symbol>
+    <symbol id="iconMore" viewBox="0 0 24 24"><path d="M5 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></symbol>
+</defs></svg>
+<div id="app"></div>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

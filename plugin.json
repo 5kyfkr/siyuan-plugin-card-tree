@@ -1,0 +1,34 @@
+{
+  "name": "siyuan-plugin-card-tree",
+  "author": "5kyfkr",
+  "url": "https://github.com/5kyfkr/siyuan-plugin-card-tree",
+  "version": "1.0.0",
+  "minAppVersion": "3.8.6",
+  "disabledInPublish": true,
+  "backends": [
+    "all"
+  ],
+  "frontends": [
+    "all"
+  ],
+  "displayName": {
+    "default": "Card Document Tree",
+    "zh_CN": "卡片文档树"
+  },
+  "description": {
+    "default": "Browse notebooks and child documents with a document tree, preview cards, and responsive navigation.",
+    "zh_CN": "通过文档树与卡片浏览笔记本和子文档，支持正文摘要、层级导航与移动端布局。"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh_CN": "README.md"
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "keywords": [
+    "cards",
+    "document-tree",
+    "卡片",
+    "文档树"
+  ]
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+preview/app.js
+preview/app.js.map
+preview/app.css
+preview/app.css.map
+preview/marketplace*
+.playwright-cli/
+output/
+releases/
+.tmp-package-check/

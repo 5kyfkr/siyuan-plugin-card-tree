@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>卡片文档树 · 插件介绍</title>
+    <link rel="stylesheet" href="/marketplace.css">
+    <style>
+        @font-face { font-family: "Marketplace Sans"; src: local("Microsoft YaHei"); font-weight: 400; }
+        @font-face { font-family: "Marketplace Sans"; src: local("Microsoft YaHei Bold"); font-weight: 600 900; }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; width: 1024px; height: 768px; overflow: hidden; }
+        body { color: #254237; background: #F2F0E7; font-family: "Marketplace Sans", sans-serif; }
+        .poster { position: relative; width: 1024px; height: 768px; padding: 40px 52px; }
+        .identity { display: flex; align-items: center; gap: 10px; height: 24px; font-size: 14px; color: #63786B; }
+        .identity span:first-child { width: 7px; height: 7px; border-radius: 50%; background: #4A7964; }
+        .identity .divider { color: #A5AEA1; }
+        .headline { margin: 18px 0 8px; font-size: 48px; line-height: 1.25; font-weight: 700; letter-spacing: -1.5px; }
+        .description { margin: 0; font-size: 19px; line-height: 1.6; color: #63786B; }
+        .brand-icon { position: absolute; width: 104px; height: 104px; top: 56px; right: 49px; }
+        .window { margin-top: 30px; width: 920px; height: 470px; overflow: hidden; border: 1px solid #C9D1C4; border-radius: 12px; box-shadow: 0 12px 26px #2542370D; background: #FAFAF5; }
+        #workspace {
+            --b3-theme-background: #FAFAF5;
+            --b3-theme-surface: #EDEFE6;
+            --b3-theme-on-background: #304D3D;
+            --b3-theme-on-surface: #6F8071;
+            --b3-border-color: #D5DBCE;
+            --b3-theme-primary: #3E7158;
+            --b3-list-hover: #E4EADD;
+            --b3-theme-primary-lightest: #DAE6D7;
+            --b3-font-family: "Marketplace Sans", sans-serif;
+        }
+        .b3-text-field, .b3-select { min-height: 30px; padding: 5px 9px; border: 1px solid #DAE0D2; border-radius: 5px; color: #5B705E; background: #F0F2E9; font-size: 12px; }
+        .b3-text-field::placeholder { color: #7C8C7E; }
+        .features { display: flex; align-items: center; gap: 29px; margin: 27px 0 0; font-size: 15px; color: #3E6350; }
+        .features span { display: flex; align-items: center; gap: 9px; }
+        .features span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #759779; }
+        .features .compatibility { margin-left: auto; font-size: 12px; color: #7E8A7C; }
+        .features .compatibility::before { display: none; }
+    </style>
+</head>
+<body>
+    <!-- WORKSPACE_ICONS -->
+    <main class="poster">
+        <div class="identity"><span></span><span>思源笔记</span><span class="divider">/</span><span>桌面插件</span></div>
+        <h1 class="headline">卡片文档树</h1>
+        <p class="description">保留笔记层级，让内容一目了然。</p>
+        <img class="brand-icon" src="/marketplace-icon.svg" alt="卡片文档树图标">
+        <div class="window"><div id="workspace"></div></div>
+        <div class="features"><span>文档树与卡片联动</span><span>预览正文摘要</span><span>定位子笔记</span><span class="compatibility">适用于思源 3.8.6 及以上</span></div>
+    </main>
+    <script type="module" src="/marketplace.js"></script>
+</body>
+</html>
