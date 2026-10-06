@@ -85,4 +85,4 @@ git push origin main v1.0.1
 
 ## 许可证与致谢
 
-本项目采用 [MIT License](LICENSE)。交互设计参考 [Obsidian Card Workspace](https://github.com/kenanlian/obsidian-card-workspace)，思源数据适配与界面独立实现。
+项目源代码采用 [MIT License](https://github.com/5kyfkr/siyuan-plugin-card-tree/blob/main/LICENSE)。交互设计参考 [Obsidian Card Workspace](https://github.com/kenanlian/obsidian-card-workspace)，思源数据适配与界面独立实现。

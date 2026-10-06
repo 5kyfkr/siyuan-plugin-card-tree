@@ -6,6 +6,7 @@ import "./build.mjs";
 const files = {};
 async function collect(dir, prefix = "") {
     for (const entry of await readdir(dir, {withFileTypes: true})) {
+        if (entry.isFile() && entry.name.toLowerCase() === "license") continue;
         const name = prefix + entry.name;
         if (entry.isDirectory()) await collect(join(dir, entry.name), name + "/");
         else files[name] = new Uint8Array(await readFile(join(dir, entry.name)));
