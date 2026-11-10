@@ -29,6 +29,7 @@ export class CardTreeStore {
         this.previewEpoch = 0;
         this.sort = ["tree", "updated", "title"].includes(settings.sort) ? settings.sort : "tree";
         this.cardHeight = normalizeCardHeight(settings.cardHeight);
+        this.hoverPreviewEnabled = settings.hoverPreviewEnabled !== false;
         this.loading = false;
         this.error = "";
         this.listeners = new Set();
@@ -50,10 +51,11 @@ export class CardTreeStore {
 
     settings() {
         return {
-            selection: this.selection,
+            selection: this.selection || (!this.started ? this.restored : null) || null,
             expanded: [...this.expanded].slice(-300),
             sort: this.sort,
             cardHeight: this.cardHeight,
+            hoverPreviewEnabled: this.hoverPreviewEnabled,
         };
     }
 
@@ -252,6 +254,11 @@ export class CardTreeStore {
         this.cardHeight = next;
         this.save();
         this.emit({settings: true});
+    }
+
+    setHoverPreviewEnabled(enabled) {
+        this.hoverPreviewEnabled = Boolean(enabled);
+        this.save();
     }
 
     visibleCards(query = "") {

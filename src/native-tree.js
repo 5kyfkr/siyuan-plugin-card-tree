@@ -1,4 +1,15 @@
 // This small optional adapter is isolated because native tree DOM is not a public plugin API.
+export function nativeTreeDocument(target) {
+    const label = target?.closest?.(".b3-list-item__text");
+    const row = label?.closest(".sy__file li[data-type='navigation-file']");
+    const id = row?.getAttribute("data-node-id");
+    if (!id || row.getAttribute("aria-disabled") === "true" || row.hasAttribute("data-spec-too-new")) return null;
+    // 新版树的普通行通过 occurrence key 关联笔记本，加密文档读取需要保留该 ID。
+    const notebookId = row.closest("ul[data-url]")?.getAttribute("data-url") ||
+        row.getAttribute("data-tree-key")?.match(/^notebook:([^/]+)/)?.[1] || "";
+    return {id, notebookId};
+}
+
 export function nativeTreeSelection(target) {
     if (!target?.closest) return null;
     const label = target.closest(".b3-list-item__text");

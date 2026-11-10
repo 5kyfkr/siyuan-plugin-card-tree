@@ -2,7 +2,7 @@
   "name": "siyuan-plugin-card-tree",
   "author": "5kyfkr",
   "url": "https://github.com/5kyfkr/siyuan-plugin-card-tree",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "3.8.6",
   "disabledInPublish": true,
   "backends": [

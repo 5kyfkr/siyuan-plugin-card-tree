@@ -3,6 +3,7 @@ import {KernelAPI} from "./api.js";
 import {CardTreeStore} from "./store.js";
 import {CardTreeView} from "./view.js";
 import {nativeTreeSelection} from "./native-tree.js";
+import {NativeTreeHoverPreview} from "./hover-preview.js";
 
 const TAB_TYPE = "card-workspace";
 const DOCK_TYPE = "child-cards";
@@ -28,11 +29,31 @@ export default class CardTreePlugin extends Plugin {
         catch (error) { console.warn("[card-tree] Settings could not be loaded", error); }
         if (this.disposed) return;
         this.store = new CardTreeStore(new KernelAPI(), settings, data => this.scheduleSave(data));
+        this.hoverPreview = new NativeTreeHoverPreview(this.store.api, this.eventBus);
+        this.hoverPreview.setEnabled(!this.mobile && this.store.hoverPreviewEnabled);
         this.cardHeightDraft = this.store.cardHeight;
         this.setting = new Setting({
             width: "560px",
             height: "360px",
             confirmCallback: () => this.store.setCardHeight(this.cardHeightDraft),
+        });
+        this.setting.addItem({
+            title: "文档树悬停内容预览",
+            description: "在原生文档信息提示中显示正文摘要和首张本地图片。默认开启，仅桌面鼠标悬停生效。",
+            createActionElement: () => {
+                const input = document.createElement("input");
+                input.className = "b3-switch";
+                input.type = "checkbox";
+                input.setAttribute("role", "switch");
+                input.setAttribute("aria-label", "文档树悬停内容预览");
+                input.checked = this.store.hoverPreviewEnabled;
+                input.disabled = this.mobile;
+                input.addEventListener("change", () => {
+                    this.store.setHoverPreviewEnabled(input.checked);
+                    this.hoverPreview.setEnabled(!this.mobile && input.checked);
+                });
+                return input;
+            },
         });
         this.setting.addItem({
             title: "卡片固定高度",
@@ -76,8 +97,10 @@ export default class CardTreePlugin extends Plugin {
             if (selection) this.store.select(selection);
         };
         this.onWS = event => {
-            if (!this.views.size || this.disposed) return;
+            if (this.disposed) return;
             const cmd = event.detail?.cmd;
+            if (cmd === "transactions" || TREE_COMMANDS.has(cmd)) this.hoverPreview.invalidate();
+            if (!this.views.size) return;
             if (TREE_COMMANDS.has(cmd)) this.scheduleRefresh();
             else if (cmd === "transactions") {
                 clearTimeout(this.contentTimer);
@@ -86,7 +109,10 @@ export default class CardTreePlugin extends Plugin {
                 }, 1800);
             }
         };
-        this.onSync = () => { if (this.views.size) this.scheduleRefresh(); };
+        this.onSync = () => {
+            this.hoverPreview.invalidate();
+            if (this.views.size) this.scheduleRefresh();
+        };
         this.eventBus.on("ws-main", this.onWS);
         this.eventBus.on("sync-end", this.onSync);
         this.eventBus.on("opened-notebook", this.onSync);
@@ -174,6 +200,7 @@ export default class CardTreePlugin extends Plugin {
 
     async onunload() {
         this.disposed = true;
+        this.hoverPreview?.destroy();
         this.workspaceDialog?.destroy();
         clearTimeout(this.saveTimer);
         clearTimeout(this.refreshTimer);
